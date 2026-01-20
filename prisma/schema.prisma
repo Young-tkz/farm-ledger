@@ -1,9 +1,5 @@
-generator client {
-  provider = "prisma-client-js"
-}
-
 datasource db {
-  provider = "postgresql"
-  url      = env("POSTGRES_PRISMA_URL") // Vercel will fill this in automatically
-  directUrl = env("POSTGRES_URL_NON_POOLING") // Vercel uses this for migrations
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")           // Changed from POSTGRES_PRISMA_URL
+  directUrl = env("DATABASE_URL_UNPOOLED")  // Changed from POSTGRES_URL_NON_POOLING
 }
