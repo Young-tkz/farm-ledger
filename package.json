@@ -6,8 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint",
-    "postinstall": "prisma generate" <-- Add this line!
+    "lint": "next lint",
+    "postinstall": "prisma generate"
   },
   "dependencies": {
     "groq-sdk": "^0.37.0",
