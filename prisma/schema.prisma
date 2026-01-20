@@ -1,5 +1,29 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
 datasource db {
   provider  = "postgresql"
-  url       = env("DATABASE_URL")           // Changed from POSTGRES_PRISMA_URL
-  directUrl = env("DATABASE_URL_UNPOOLED")  // Changed from POSTGRES_URL_NON_POOLING
+  url       = env("DATABASE_URL")
+  directUrl = env("DATABASE_URL_UNPOOLED")
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  clerkId   String   @unique
+  email     String   @unique
+  name      String?
+  createdAt DateTime @default(now())
+  entries   Entry[]
+}
+
+model Entry {
+  id          Int      @id @default(autoincrement())
+  amount      Float
+  description String
+  category    String
+  type        String   // "INCOME" or "EXPENSE"
+  date        DateTime @default(now())
+  userId      Int
+  user        User     @relation(fields: [userId], references: [id])
 }
